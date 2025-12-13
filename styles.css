@@ -272,14 +272,14 @@ header {
 .suspicious-zone {
     position: relative;
     border-bottom: 2px dashed transparent;
-    cursor: crosshair;
+    cursor: cell; /* Changed to indicate interactivity */
     transition: all 0.2s;
     padding: 0 2px;
 }
 
 .suspicious-zone:hover {
-    background-color: rgba(245, 158, 11, 0.2);
-    border-bottom-color: var(--accent-warning);
+    background-color: rgba(245, 158, 11, 0.1); /* Very subtle hint on hover */
+    border-bottom-color: rgba(245, 158, 11, 0.5);
 }
 
 /* State: User has clicked/found this item */
@@ -287,6 +287,18 @@ header {
     background-color: rgba(239, 68, 68, 0.2);
     border: 1px solid var(--accent-danger);
     border-radius: 3px;
+    cursor: default;
+}
+
+/* Animation for finding a clue */
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.suspicious-zone.found .analysis-tooltip {
+    display: block;
+    animation: popIn 0.2s ease-out forwards;
 }
 
 /* The Tooltip showing the analysis */
@@ -305,11 +317,7 @@ header {
     border: 1px solid var(--accent-warning);
     display: none; /* Hidden by default */
     z-index: 10;
-}
-
-/* Show tooltip on found items */
-.suspicious-zone.found .analysis-tooltip {
-    display: block;
+    margin-bottom: 5px;
 }
 
 .tooltip-tag {
@@ -422,12 +430,35 @@ header {
     padding: 8px 0;
     border-bottom: 1px solid var(--panel-border);
     font-size: 0.9rem;
+    color: var(--text-muted); /* Default muted */
+    transition: all 0.3s ease;
 }
 
 .evidence-item:last-child { border-bottom: none; }
 
 .evidence-check {
-    color: var(--accent-success);
+    color: #475569; /* Default gray/unchecked */
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 1px solid #475569;
+    font-size: 0.7rem;
+    transition: all 0.3s ease;
+}
+
+/* Active State for Evidence Sidebar */
+.evidence-item.checked {
+    color: var(--text-main);
+}
+
+.evidence-item.checked .evidence-check {
+    background-color: var(--accent-success);
+    border-color: var(--accent-success);
+    color: white;
 }
 
 .verdict-section {
@@ -456,16 +487,27 @@ header {
     background: var(--panel-bg);
     border: 2px solid var(--accent-success);
     color: var(--accent-success);
+    opacity: 0.6;
+}
+
+.btn-safe.selected {
+    background: rgba(34, 197, 94, 0.2);
+    opacity: 1;
 }
 
 .btn-scam {
-    background: var(--accent-danger);
-    color: white;
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    background: var(--panel-bg);
+    border: 2px solid var(--accent-danger);
+    color: var(--accent-danger);
+    opacity: 0.6;
 }
 
 /* Fake "Selected" State */
 .btn-scam.selected {
+    background: var(--accent-danger);
+    color: white;
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
     position: relative;
 }
 .btn-scam.selected::after {
@@ -478,4 +520,63 @@ header {
     font-size: 0.6rem;
     padding: 2px 6px;
     border-radius: 4px;
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.modal-body {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.modal-btn {
+    background: var(--accent-primary);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
 }
