@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Defense Agency - Detective Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- Top Navigation / Gamification Bar -->
+    <header>
+        <div class="brand">
+            <div class="brand-icon">🛡️</div>
+            <div>Digital Defense <span style="color:var(--text-muted); font-weight:400;">Agency</span></div>
+        </div>
+
+        <div class="player-stats">
+            <!-- Streak -->
+            <div class="streak-fire">
+                🔥 12 Day Streak
+            </div>
+
+            <!-- Level & XP -->
+            <div class="level-badge">
+                Level 3: <span>Senior Analyst</span>
+            </div>
+            <div class="xp-container">
+                <div class="xp-label">
+                    <span>XP Progress</span>
+                    <span>850 / 1000</span>
+                </div>
+                <div class="xp-bar">
+                    <div class="xp-fill"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3-Column Dashboard Layout -->
+    <div class="dashboard-grid">
+
+        <!-- Left: Toolkit Sidebar -->
+        <aside class="panel panel-sidebar">
+            <div class="tool-category">Standard Tools</div>
+            <button class="tool-btn active">
+                <div class="icon-box">🔍</div>
+                <span>Case Investigator</span>
+            </button>
+            <button class="tool-btn">
+                <div class="icon-box">📧</div>
+                <span>Header Analyzer</span>
+            </button>
+            
+            <div class="tool-category">Advanced Forensic</div>
+            <button class="tool-btn">
+                <div class="icon-box">🧠</div>
+                <span>Logic Check</span>
+            </button>
+            <button class="tool-btn">
+                <div class="icon-box">🌍</div>
+                <span>Reverse Search</span>
+            </button>
+            <button class="tool-btn">
+                <div class="icon-box">🔬</div>
+                <span>Pixel DeepScan</span>
+            </button>
+            
+            <div class="tool-category">Locked (Lvl 5+)</div>
+            <button class="tool-btn locked">
+                <div class="icon-box">🔒</div>
+                <span>Audio Waveform</span>
+            </button>
+        </aside>
+
+        <!-- Center: The Active Case (Game View) -->
+        <main class="panel">
+            <div class="case-header">
+                <div>
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">CURRENT ASSIGNMENT</div>
+                    <div class="case-id">Case #4092: "Urgent Invoice"</div>
+                </div>
+                <div class="case-tag">Potential Phishing</div>
+            </div>
+
+            <!-- GAME LOOP A: Text Investigator -->
+            <div class="tool-category">Evidence Item A: Email Thread</div>
+            <div class="investigation-card">
+                <div class="card-header-bar">
+                    <span>Outlook_Viewer_v2.exe</span>
+                    <span>Threat Level: Unknown</span>
+                </div>
+                <div class="email-mockup">
+                    <div class="email-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">From:</span>
+                            <!-- GAME ELEMENT: Suspicious Sender -->
+                            <span class="suspicious-zone found">
+                                account-security@paypaI-support.net
+                                <div class="analysis-tooltip">
+                                    <span class="tooltip-tag">SPOOFED DOMAIN</span>
+                                    Misspelled 'PayPal' (Capital I instead of l)
+                                </div>
+                            </span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Subject:</span>
+                            <span style="font-weight:bold;">ACTION REQUIRED: Unauthorized access detected</span>
+                        </div>
+                    </div>
+                    
+                    <div class="email-body">
+                        <p style="margin-bottom:15px;">Dear Customer,</p>
+                        
+                        <p style="margin-bottom:15px;">We have detected suspicious activity on your corporate account. To prevent permanent suspension, you must 
+                        <!-- GAME ELEMENT: Artificial Urgency -->
+                        <span class="suspicious-zone found">
+                            kindly do the needful
+                            <div class="analysis-tooltip">
+                                <span class="tooltip-tag">AI / SYNTAX</span>
+                                Unnatural phrasing, archaic grammar common in non-native scams.
+                            </div>
+                        </span> 
+                        within 24 hours.</p>
+
+                        <p style="margin-bottom:15px;">Please verify your identity using the secure portal below:</p>
+
+                        <div style="background:#3b82f6; color:white; padding:10px 20px; display:inline-block; border-radius:4px; margin-bottom:20px; font-weight:bold;">
+                            Verify Identity Now
+                        </div>
+
+                        <p style="color:#64748b; font-size:0.8rem;">
+                            Security Team<br>
+                            Global Operations<br>
+                            <!-- GAME ELEMENT: Logic Error -->
+                            <span class="suspicious-zone found">
+                                Copyright 2022
+                                <div class="analysis-tooltip">
+                                    <span class="tooltip-tag">LOGIC ERROR</span>
+                                    Outdated Copyright Date (Current year is 2025)
+                                </div>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME LOOP B: Context Logic (Preview) -->
+            <div class="tool-category">Evidence Item B: Verification Photo</div>
+            <div class="investigation-card" style="padding:20px;">
+                <div class="context-grid">
+                    <div class="image-container">
+                        <!-- Placeholder for where the Deepfake image would go -->
+                        <div class="placeholder-img">
+                            [IMAGE: CEO AT 1990 EVENT]
+                        </div>
+                        
+                        <!-- Visualizing the Logic Connection Mechanic -->
+                        <div class="logic-overlay">
+                            <div class="metadata-tag meta-1">Event Date: 1990</div>
+                            <div class="metadata-tag meta-2">Subject Age: 10y/o</div>
+                            
+                            <!-- The line drawn by the user -->
+                            <div class="logic-connector">
+                                <div class="connector-badge">IMPOSSIBLE</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-left:10px;">
+                        <h4 style="color:var(--text-main); margin-bottom:10px;">Logic Analyzer</h4>
+                        <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
+                            The subject in the photo appears to be approx. 40 years old. 
+                            <br><br>
+                            However, cross-referencing the <strong>Event Date</strong> (1990) with the Subject's <strong>Date of Birth</strong> (1980) reveals a chronological impossibility.
+                        </p>
+                        <div style="margin-top:20px; font-size:0.75rem; color:var(--accent-danger); font-weight:bold;">
+                            ⚠️ CONTEXT MISMATCH DETECTED
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Right: Evidence & Verdict -->
+        <aside class="panel panel-details">
+            <h3 style="margin-bottom:20px;">Investigation Report</h3>
+
+            <div class="stat-card">
+                <div class="stat-header">Collected Evidence (3/3)</div>
+                <ul class="evidence-list">
+                    <li class="evidence-item">
+                        <span class="evidence-check">✔</span>
+                        <span>Spoofed Domain (Typosquatting)</span>
+                    </li>
+                    <li class="evidence-item">
+                        <span class="evidence-check">✔</span>
+                        <span>Unnatural Syntax ("Needful")</span>
+                    </li>
+                    <li class="evidence-item">
+                        <span class="evidence-check">✔</span>
+                        <span>Outdated Copyright</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">Context Analysis</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                    <span style="font-size:0.9rem;">Artificiality Score</span>
+                    <span style="font-weight:bold; color:var(--accent-danger);">94%</span>
+                </div>
+                <div style="height:6px; background:#334155; border-radius:3px; margin-top:8px; overflow:hidden;">
+                    <div style="width:94%; height:100%; background:var(--accent-danger);"></div>
+                </div>
+            </div>
+
+            <div class="verdict-section">
+                <div class="stat-header">Final Verdict</div>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
+                    Select the appropriate classification to close Case #4092.
+                </p>
+                <div class="btn-group">
+                    <button class="btn btn-safe">LEGITIMATE</button>
+                    <button class="btn btn-scam selected">MALICIOUS</button>
+                </div>
+                <button class="btn" style="width:100%; margin-top:15px; background:var(--accent-primary); color:white; box-shadow:0 4px 10px rgba(59, 130, 246, 0.3);">
+                    SUBMIT TO HQ
+                </button>
+            </div>
+            
+            <div style="margin-top:40px; padding-top:20px; border-top:1px solid var(--panel-border);">
+                <div class="stat-header">Department Leaderboard</div>
+                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:10px;">
+                    <span>1. Engineering</span>
+                    <span style="color:var(--accent-success);">98% Safe</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:8px; opacity:0.7;">
+                    <span>2. Sales (You)</span>
+                    <span style="color:var(--accent-warning);">84% Safe</span>
+                </div>
+                 <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:8px; opacity:0.5;">
+                    <span>3. HR</span>
+                    <span>79% Safe</span>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+</body>
+</html>

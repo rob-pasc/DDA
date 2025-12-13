@@ -1,0 +1,481 @@
+/* --- RESET & VARIABLES --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+    /* Palette: Cyber Tactical B2B */
+    --bg-dark: #0f172a;
+    --panel-bg: #1e293b;
+    --panel-border: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    /* Game Accents */
+    --accent-primary: #3b82f6; /* Blue for UI */
+    --accent-warning: #f59e0b; /* Yellow for Suspicion */
+    --accent-danger: #ef4444; /* Red for Threat/Scam */
+    --accent-success: #22c55e; /* Green for Safe/Verified */
+    --highlight-bg: rgba(245, 158, 11, 0.2); /* Low opacity yellow */
+    
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent scroll for dashboard feel */
+}
+
+/* --- HEADER & GAMIFICATION BAR --- */
+header {
+    background-color: var(--panel-bg);
+    border-bottom: 1px solid var(--panel-border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-primary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.player-stats {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.level-badge {
+    background: #334155;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid #475569;
+}
+
+.level-badge span {
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
+.xp-container {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 4px;
+}
+
+.xp-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.xp-bar {
+    height: 8px;
+    background: #334155;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.xp-fill {
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg, var(--accent-primary), #60a5fa);
+    border-radius: 4px;
+}
+
+.streak-fire {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-warning);
+    font-weight: bold;
+}
+
+/* --- MAIN DASHBOARD LAYOUT --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr 320px; /* Sidebar, Main Work, Details */
+    gap: 1px; /* Gap creates borders via background showing through */
+    background-color: var(--panel-border); /* Grid lines color */
+    flex: 1;
+    height: calc(100vh - 70px);
+}
+
+.panel {
+    background-color: var(--bg-dark);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.panel-sidebar {
+    background-color: var(--panel-bg);
+    border-right: 1px solid var(--panel-border);
+}
+
+.panel-details {
+    background-color: var(--panel-bg);
+    border-left: 1px solid var(--panel-border);
+}
+
+/* --- SIDEBAR TOOLS --- */
+.tool-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+.tool-category:first-child { margin-top: 0; }
+
+.tool-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.tool-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--text-main);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.tool-btn.active {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.tool-btn.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.icon-box {
+    width: 24px;
+    text-align: center;
+}
+
+/* --- MAIN WORKSPACE (The Game) --- */
+.case-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.case-id {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.case-tag {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--accent-danger);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* MODULE 1: EMAIL INVESTIGATOR */
+.investigation-card {
+    background: var(--panel-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--panel-border);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header-bar {
+    background: #283445;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.email-mockup {
+    padding: 30px;
+    font-family: 'Arial', sans-serif; /* Emails usually serif/sans-serif mix */
+    background: #e2e8f0; /* Light bg for email realism */
+    color: #1e293b;
+    min-height: 250px;
+}
+
+.email-meta {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 15px;
+}
+
+.meta-row {
+    display: flex;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.meta-label {
+    width: 80px;
+    font-weight: bold;
+    color: #64748b;
+}
+
+/* GAMEPLAY: HIGHLIGHTING MECHANIC */
+.suspicious-zone {
+    position: relative;
+    border-bottom: 2px dashed transparent;
+    cursor: crosshair;
+    transition: all 0.2s;
+    padding: 0 2px;
+}
+
+.suspicious-zone:hover {
+    background-color: rgba(245, 158, 11, 0.2);
+    border-bottom-color: var(--accent-warning);
+}
+
+/* State: User has clicked/found this item */
+.suspicious-zone.found {
+    background-color: rgba(239, 68, 68, 0.2);
+    border: 1px solid var(--accent-danger);
+    border-radius: 3px;
+}
+
+/* The Tooltip showing the analysis */
+.analysis-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-dark);
+    color: var(--text-main);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--accent-warning);
+    display: none; /* Hidden by default */
+    z-index: 10;
+}
+
+/* Show tooltip on found items */
+.suspicious-zone.found .analysis-tooltip {
+    display: block;
+}
+
+.tooltip-tag {
+    color: var(--accent-warning);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+/* MODULE 2: CONTEXT DETECTIVE */
+.context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.image-container {
+    position: relative;
+    height: 200px;
+    background-color: #000;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid var(--panel-border);
+}
+
+.placeholder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    /* Placeholder pattern */
+    background-image: linear-gradient(45deg, #1e293b 25%, #0f172a 25%, #0f172a 50%, #1e293b 50%, #1e293b 75%, #0f172a 75%, #0f172a 100%);
+    background-size: 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    font-weight: bold;
+}
+
+/* Gameplay: Logic Connector Line */
+.logic-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.metadata-tag {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--text-main);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    border: 1px solid var(--accent-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.meta-1 { top: 20px; left: 20px; } /* Event Date */
+.meta-2 { bottom: 20px; right: 20px; border-color: var(--accent-danger); } /* Person Age */
+
+.logic-connector {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    width: 150px;
+    height: 2px;
+    background: var(--accent-danger);
+    transform: rotate(25deg);
+    transform-origin: left center;
+}
+
+.connector-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--accent-danger);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* --- RIGHT PANEL: VERDICT & STATS --- */
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-header {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.evidence-list {
+    list-style: none;
+}
+
+.evidence-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--panel-border);
+    font-size: 0.9rem;
+}
+
+.evidence-item:last-child { border-bottom: none; }
+
+.evidence-check {
+    color: var(--accent-success);
+}
+
+.verdict-section {
+    margin-top: 30px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-safe {
+    background: var(--panel-bg);
+    border: 2px solid var(--accent-success);
+    color: var(--accent-success);
+}
+
+.btn-scam {
+    background: var(--accent-danger);
+    color: white;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+/* Fake "Selected" State */
+.btn-scam.selected {
+    position: relative;
+}
+.btn-scam.selected::after {
+    content: 'SELECTED';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: white;
+    color: var(--accent-danger);
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
