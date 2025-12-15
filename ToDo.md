@@ -1,0 +1,5 @@
+- `tooltip-tag` goes transparent when hovering over it, so that it doesn't hinder the user
+- `context wheel` should have more options (maybe 8?)
+- `artificiality score` is always at 94% -> make it dynamically responsive to clues found
+- for `final verdict`: `selected` tag should also appear for clicking the `legitimate` option, not just for `malicious`
+- the weird line-break after "needful" should also be a clue (maybe "unnatural styling" or something similar?)
