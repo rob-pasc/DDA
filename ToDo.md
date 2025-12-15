@@ -1,5 +1,4 @@
-- `tooltip-tag` goes transparent when hovering over it, so that it doesn't hinder the user
-- `context wheel` should have more options (maybe 8?)
-- `artificiality score` is always at 94% -> make it dynamically responsive to clues found
-- for `final verdict`: `selected` tag should also appear for clicking the `legitimate` option, not just for `malicious`
-- the weird line-break after "needful" should also be a clue (maybe "unnatural styling" or something similar?)
+- `analysis tooltip` should become transparent when hovering over it, so that it doesn't hinder the user
+- `context wheel` - option bubbles should be able to fit the entire text
+- the user should be able to decide wether he wants to be shown the clues he hasn't found yet of the Collected Evidence (0/5) list in the Investigation Report -> "enable hints" option
+- the tooltips for the "Copyright" and "kindly do the neeful" clues do not show up -> fix this bug

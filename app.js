@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // State
     let cluesFound = 0;
-    const totalClues = 4; // Domain, Syntax, Link, Logic
+    const totalClues = 5; // Domain, Syntax, Link, Logic, Formatting
     let selectedVerdict = null;
     let currentActiveZone = null; // Tracks which zone is currently being investigated via wheel
 
@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const contextWheel = document.getElementById('context-wheel');
     const wheelCenter = document.querySelector('.wheel-center');
     const wheelBtns = document.querySelectorAll('.wheel-btn');
+    
+    // Dynamic Score Elements
+    const artificialityText = document.getElementById('artificiality-text');
+    const artificialityBar = document.getElementById('artificiality-bar');
 
     // 1. HIGHLIGHTING MECHANIC WITH CONTEXT WHEEL
     const zones = document.querySelectorAll('.suspicious-zone');
@@ -85,6 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // 3. Update Stats
         cluesFound++;
         evidenceHeader.innerText = `Collected Evidence (${cluesFound}/${totalClues})`;
+        
+        // TODO #3: Update Artificiality Score
+        updateArtificialityScore();
 
         // 4. Close Wheel
         closeWheel();
@@ -102,6 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
             contextWheel.classList.remove('shake');
             btnElement.classList.remove('wrong');
         }, 400);
+    }
+    
+    function updateArtificialityScore() {
+        // Simple logic: Each clue found adds ~20% confidence
+        // Cap at 98% because AI is never 100%
+        const percentage = Math.min(Math.round((cluesFound / totalClues) * 98), 98);
+        artificialityText.innerText = `${percentage}%`;
+        artificialityBar.style.width = `${percentage}%`;
+        
+        // Color transition logic (optional but nice)
+        if (percentage > 70) {
+            artificialityText.style.color = "var(--accent-danger)";
+            artificialityBar.style.background = "var(--accent-danger)";
+        } else if (percentage > 40) {
+             artificialityText.style.color = "var(--accent-warning)";
+             artificialityBar.style.background = "var(--accent-warning)";
+        } else {
+             artificialityText.style.color = "var(--accent-success)";
+             artificialityBar.style.background = "var(--accent-success)";
+        }
     }
 
     // Close wheel on center click or outside click

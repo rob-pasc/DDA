@@ -122,8 +122,16 @@
                                 <span class="tooltip-tag">AI / SYNTAX</span>
                                 Unnatural phrasing, archaic grammar common in non-native scams.
                             </div>
-                        </span> 
-                        within 24 hours.</p>
+                        </span>
+                        
+                        <!-- TODO #5: New Clue (Formatting/Line Break) -->
+                        <span class="suspicious-zone" data-id="formatting-error">
+                            within 24 hours.
+                            <div class="analysis-tooltip">
+                                <span class="tooltip-tag">BAD FORMATTING</span>
+                                Unusual line break or spacing inside the sentence.
+                            </div>
+                        </span></p>
 
                         <p style="margin-bottom:15px;">Please verify your identity using the secure portal below:</p>
 
@@ -153,22 +161,23 @@
                 </div>
             </div>
 
-            <!-- GAME LOOP B: Context Logic (Preview - Static for this demo) -->
+            <!-- GAME LOOP B: Context Logic (Preview - not relevant for this demo) -->
+            <!-- 
             <div class="tool-category">Evidence Item B: Verification Photo</div>
             <div class="investigation-card" style="padding:20px;">
                 <div class="context-grid">
                     <div class="image-container">
-                        <!-- Placeholder for where the Deepfake image would go -->
+                        !-- Placeholder for where the Deepfake image would go --
                         <div class="placeholder-img">
                             [IMAGE: CEO AT 1990 EVENT]
                         </div>
                         
-                        <!-- Visualizing the Logic Connection Mechanic -->
+                        !-- Visualizing the Logic Connection Mechanic --
                         <div class="logic-overlay">
                             <div class="metadata-tag meta-1">Event Date: 1990</div>
                             <div class="metadata-tag meta-2">Subject Age: 10y/o</div>
                             
-                            <!-- The line drawn by the user -->
+                            !-- The line drawn by the user --
                             <div class="logic-connector">
                                 <div class="connector-badge">IMPOSSIBLE</div>
                             </div>
@@ -186,7 +195,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            -->
 
         </main>
 
@@ -196,7 +206,7 @@
 
             <div class="stat-card">
                 <!-- Added ID to update this text -->
-                <div class="stat-header" id="evidence-header">Collected Evidence (0/4)</div>
+                <div class="stat-header" id="evidence-header">Collected Evidence (0/5)</div>
                 <ul class="evidence-list">
                     <!-- Added data-target attributes to link with game view -->
                     <li class="evidence-item" data-target="spoofed-domain">
@@ -215,6 +225,11 @@
                         <span class="evidence-check">✓</span>
                         <span>Outdated Copyright</span>
                     </li>
+                    <!-- New Evidence Item -->
+                    <li class="evidence-item" data-target="formatting-error">
+                        <span class="evidence-check">✓</span>
+                        <span>Bad Formatting</span>
+                    </li>
                 </ul>
             </div>
 
@@ -222,10 +237,12 @@
                 <div class="stat-header">Context Analysis</div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
                     <span style="font-size:0.9rem;">Artificiality Score</span>
-                    <span style="font-weight:bold; color:var(--accent-danger);">94%</span>
+                    <!-- TODO #3: Dynamic Score ID -->
+                    <span id="artificiality-text" style="font-weight:bold; color:var(--accent-danger);">0%</span>
                 </div>
                 <div style="height:6px; background:#334155; border-radius:3px; margin-top:8px; overflow:hidden;">
-                    <div style="width:94%; height:100%; background:var(--accent-danger);"></div>
+                    <!-- TODO #3: Dynamic Bar ID -->
+                    <div id="artificiality-bar" style="width:0%; height:100%; background:var(--accent-danger);"></div>
                 </div>
             </div>
 
@@ -265,11 +282,16 @@
     </div>
 
     <!-- RADIAL CONTEXT WHEEL MENU -->
+    <!-- TODO #2: 8 Options -->
     <div id="context-wheel" class="context-wheel">
         <button class="wheel-btn" data-reason="spoofed-domain">Spoofed Domain</button>
+        <button class="wheel-btn" data-reason="formatting-error">Formatting</button>
         <button class="wheel-btn" data-reason="ai-syntax">AI Syntax</button>
+        <button class="wheel-btn" data-reason="urgency">Urgency</button>
         <button class="wheel-btn" data-reason="malicious-link">Malicious Link</button>
+        <button class="wheel-btn" data-reason="generic-greeting">Generic Greeting</button>
         <button class="wheel-btn" data-reason="logic-error">Logic Error</button>
+        <button class="wheel-btn" data-reason="data-request">Data Request</button>
         <div class="wheel-center">✖</div>
     </div>
 
