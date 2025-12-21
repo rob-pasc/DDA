@@ -2,3 +2,4 @@
 - `context wheel` - option bubbles should be able to fit the entire text
 - the user should be able to decide wether he wants to be shown the clues he hasn't found yet of the Collected Evidence (0/5) list in the Investigation Report -> "enable hints" option
 - the tooltips for the "Copyright" and "kindly do the neeful" clues do not show up -> fix this bug
+- when the user flags it as malicious and submits, he always gets awarded +350 XP points. The point award should scale with how many clues he managed to find
