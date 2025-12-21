@@ -97,10 +97,10 @@
                             <!-- GAME ELEMENT: Suspicious Sender -->
                             <span class="suspicious-zone" data-id="spoofed-domain">
                                 account-security@paypaI-support.net
-                                <div class="analysis-tooltip">
+                                <span class="analysis-tooltip">
                                     <span class="tooltip-tag">GEFÄLSCHTE DOMAIN</span>
                                     Falsch geschriebenes 'PayPal' (Großes I statt kleinem l)
-                                </div>
+                                </span>
                             </span>
                         </div>
                         <div class="meta-row">
@@ -116,29 +116,29 @@
                         <!-- GAME ELEMENT: Artificial Urgency -->
                         <span class="suspicious-zone" data-id="ai-syntax">
                             bitte das Notwendige veranlassen.
-                            <div class="analysis-tooltip">
-                                <span class="tooltip-tag">KI / SYNTAX</span>
-                                Unnatürliche Formulierung ("do the needful"), typisch für KI-Übersetzungen oder Non-Native Speaker.
-                            </div>
+                            <span class="analysis-tooltip">
+                                <span class="tooltip-tag">KI / STIL</span>
+                                Unnatürliche Formulierung ("das Notwendige veranlassen")
+                            </span>
                         </span>Bitte machen Sie dies
                         <!-- Clue: Urgency -->
                         <span class="suspicious-zone" data-id="urgency">
                             innerhalb von 24 Stunden.
-                            <div class="analysis-tooltip">
+                            <span class="analysis-tooltip">
                                 <span class="tooltip-tag">DRINGLICHKEIT</span>
                                 Typisches Druckmittel: Kurze Frist soll Panik erzeugen.
-                            </div>
+                            </span>
                         </span></p>
 
                         <p style="margin-bottom:15px;">Bitte verifizieren Sie Ihre Identität über das sichere Portal unten:</p>
 
                         <!-- Clue: Malicious Link -->
                         <div class="suspicious-zone" data-id="malicious-link" style="background:#3b82f6; color:white; padding:10px 20px; display:inline-block; border-radius:4px; margin-bottom:20px; font-weight:bold;">
-                            <a href="http://paypaI-verify.com">Jetzt Identität Verifizieren</a>
-                             <div class="analysis-tooltip">
+                            Jetzt Identität Verifizieren
+                             <span class="analysis-tooltip">
                                 <span class="tooltip-tag">SCHÄDLICHER LINK</span>
                                 Linkziel maskiert. Führt zu 'papyal-verify.com'
-                            </div>
+                            </span>
                         </div>
 
                         <p style="color:#64748b; font-size:0.8rem;">
@@ -147,10 +147,10 @@
                             <!-- Clue: Logic Error -->
                             <span class="suspicious-zone" data-id="logic-error">
                                 Copyright 2022
-                                <div class="analysis-tooltip">
+                                <span class="analysis-tooltip">
                                     <span class="tooltip-tag">LOGIKFEHLER</span>
                                     Veraltetes Copyright-Datum (Aktuelles Jahr ist 2025)
-                                </div>
+                                </span>
                             </span>
                         </p>
                     </div>
@@ -184,7 +184,7 @@
                     </li>
                     <li class="evidence-item" data-target="ai-syntax">
                         <span class="evidence-check">✓</span>
-                        <span class="evidence-text">Unnatürliche Syntax</span>
+                        <span class="evidence-text">Unnatürlicher Stil</span>
                     </li>
                     <li class="evidence-item" data-target="malicious-link">
                          <span class="evidence-check">✓</span>
@@ -247,10 +247,9 @@
 
     <!-- RADIAL CONTEXT WHEEL MENU -->
     <div id="context-wheel" class="context-wheel">
-        <!-- Shortened Labels -->
         <button class="wheel-btn" data-reason="spoofed-domain">Fake-Domain</button>
         <button class="wheel-btn" data-reason="formatting-error">Formatierung</button>
-        <button class="wheel-btn" data-reason="ai-syntax">KI Syntax</button>
+        <button class="wheel-btn" data-reason="ai-syntax">KI-Stil</button>
         <button class="wheel-btn" data-reason="urgency">Dringlichkeit</button>
         <button class="wheel-btn" data-reason="malicious-link">Schad-Link</button>
         <button class="wheel-btn" data-reason="generic-greeting">Allg. Anrede</button>
