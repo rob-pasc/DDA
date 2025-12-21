@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Defense Agency - Detective Dashboard</title>
+    <title>Digital Defense Agency - Detektiv Dashboard</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
 </head>
@@ -18,7 +18,7 @@
         <div class="player-stats">
             <!-- Streak -->
             <div class="streak-fire">
-                🔥 12 Day Streak
+                🔥 12 Tage Serie
             </div>
 
             <!-- Level & XP -->
@@ -27,7 +27,7 @@
             </div>
             <div class="xp-container">
                 <div class="xp-label">
-                    <span>XP Progress</span>
+                    <span>XP Fortschritt</span>
                     <span>850 / 1000</span>
                 </div>
                 <div class="xp-bar">
@@ -42,34 +42,34 @@
 
         <!-- Left: Toolkit Sidebar -->
         <aside class="panel panel-sidebar">
-            <div class="tool-category">Standard Tools</div>
+            <div class="tool-category">Standard Werkzeuge</div>
             <button class="tool-btn active">
                 <div class="icon-box">🔍</div>
-                <span>Case Investigator</span>
+                <span>Fall-Ermittlung</span>
             </button>
             <button class="tool-btn">
                 <div class="icon-box">📧</div>
-                <span>Header Analyzer</span>
+                <span>Header-Analyse</span>
             </button>
             
-            <div class="tool-category">Advanced Forensic</div>
+            <div class="tool-category">Erweiterte Forensik</div>
             <button class="tool-btn">
                 <div class="icon-box">🧠</div>
-                <span>Logic Check</span>
+                <span>Logik-Check</span>
             </button>
             <button class="tool-btn">
                 <div class="icon-box">🌍</div>
-                <span>Reverse Search</span>
+                <span>Rückwärtssuche</span>
             </button>
             <button class="tool-btn">
                 <div class="icon-box">🔬</div>
-                <span>Pixel DeepScan</span>
+                <span>Pixel-DeepScan</span>
             </button>
             
-            <div class="tool-category">Locked (Lvl 5+)</div>
+            <div class="tool-category">Gesperrt (Lvl 5+)</div>
             <button class="tool-btn locked">
                 <div class="icon-box">🔒</div>
-                <span>Audio Waveform</span>
+                <span>Audio-Wellenform</span>
             </button>
         </aside>
 
@@ -77,204 +77,168 @@
         <main class="panel">
             <div class="case-header">
                 <div>
-                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">CURRENT ASSIGNMENT</div>
-                    <div class="case-id">Case #4092: "Urgent Invoice"</div>
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">AKTUELLES ASSIGNMENT</div>
+                    <div class="case-id">Fall #4092: "Dringende Rechnung"</div>
                 </div>
-                <div class="case-tag">Potential Phishing</div>
+                <div class="case-tag">Potenzielles Phishing</div>
             </div>
 
             <!-- GAME LOOP A: Text Investigator -->
-            <div class="tool-category">Evidence Item A: Email Thread</div>
+            <div class="tool-category">Beweismittel A: E-Mail Verlauf</div>
             <div class="investigation-card">
                 <div class="card-header-bar">
                     <span>Outlook_Viewer_v2.exe</span>
-                    <span>Threat Level: Unknown</span>
+                    <span>Bedrohungsstufe: Unbekannt</span>
                 </div>
                 <div class="email-mockup">
                     <div class="email-meta">
                         <div class="meta-row">
-                            <span class="meta-label">From:</span>
+                            <span class="meta-label">Von:</span>
                             <!-- GAME ELEMENT: Suspicious Sender -->
-                            <!-- REMOVED 'found' class for initial state, Added data-id -->
                             <span class="suspicious-zone" data-id="spoofed-domain">
                                 account-security@paypaI-support.net
                                 <div class="analysis-tooltip">
-                                    <span class="tooltip-tag">SPOOFED DOMAIN</span>
-                                    Misspelled 'PayPal' (Capital I instead of l)
+                                    <span class="tooltip-tag">GEFÄLSCHTE DOMAIN</span>
+                                    Falsch geschriebenes 'PayPal' (Großes I statt kleinem l)
                                 </div>
                             </span>
                         </div>
                         <div class="meta-row">
-                            <span class="meta-label">Subject:</span>
-                            <span style="font-weight:bold;">ACTION REQUIRED: Unauthorized access detected</span>
+                            <span class="meta-label">Betreff:</span>
+                            <span style="font-weight:bold;">HANDLUNGSBEDARF: Unautorisierter Zugriff erkannt</span>
                         </div>
                     </div>
                     
                     <div class="email-body">
-                        <p style="margin-bottom:15px;">Dear Customer,</p>
+                        <p style="margin-bottom:15px;">Sehr geehrter Kunde,</p>
                         
-                        <p style="margin-bottom:15px;">We have detected suspicious activity on your corporate account. To prevent permanent suspension, you must 
+                        <p style="margin-bottom:15px;">Wir haben verdächtige Aktivitäten auf Ihrem Firmenkonto festgestellt. Um eine dauerhafte Sperrung zu verhindern, müssen Sie 
                         <!-- GAME ELEMENT: Artificial Urgency -->
-                         <!-- REMOVED 'found' class, Added data-id -->
                         <span class="suspicious-zone" data-id="ai-syntax">
-                            kindly do the needful
+                            bitte das Notwendige veranlassen.
                             <div class="analysis-tooltip">
-                                <span class="tooltip-tag">AI / SYNTAX</span>
-                                Unnatural phrasing, archaic grammar common in non-native scams.
+                                <span class="tooltip-tag">KI / SYNTAX</span>
+                                Unnatürliche Formulierung ("do the needful"), typisch für KI-Übersetzungen oder Non-Native Speaker.
                             </div>
-                        </span>
-                        
-                        <!-- TODO #5: New Clue (Formatting/Line Break) -->
-                        <span class="suspicious-zone" data-id="formatting-error">
-                            within 24 hours.
+                        </span>Bitte machen Sie dies
+                        <!-- Clue: Urgency -->
+                        <span class="suspicious-zone" data-id="urgency">
+                            innerhalb von 24 Stunden.
                             <div class="analysis-tooltip">
-                                <span class="tooltip-tag">BAD FORMATTING</span>
-                                Unusual line break or spacing inside the sentence.
+                                <span class="tooltip-tag">DRINGLICHKEIT</span>
+                                Typisches Druckmittel: Kurze Frist soll Panik erzeugen.
                             </div>
                         </span></p>
 
-                        <p style="margin-bottom:15px;">Please verify your identity using the secure portal below:</p>
+                        <p style="margin-bottom:15px;">Bitte verifizieren Sie Ihre Identität über das sichere Portal unten:</p>
 
-                        <!-- Added id for potential Red Herring interaction (optional) -->
+                        <!-- Clue: Malicious Link -->
                         <div class="suspicious-zone" data-id="malicious-link" style="background:#3b82f6; color:white; padding:10px 20px; display:inline-block; border-radius:4px; margin-bottom:20px; font-weight:bold;">
-                            Verify Identity Now
+                            <a href="http://paypaI-verify.com">Jetzt Identität Verifizieren</a>
                              <div class="analysis-tooltip">
-                                <span class="tooltip-tag">MALICIOUS LINK</span>
-                                Link destination masked. Leads to 'papyal-verify.com'
+                                <span class="tooltip-tag">SCHÄDLICHER LINK</span>
+                                Linkziel maskiert. Führt zu 'papyal-verify.com'
                             </div>
                         </div>
 
                         <p style="color:#64748b; font-size:0.8rem;">
                             Security Team<br>
                             Global Operations<br>
-                            <!-- GAME ELEMENT: Logic Error -->
-                             <!-- REMOVED 'found' class, Added data-id -->
+                            <!-- Clue: Logic Error -->
                             <span class="suspicious-zone" data-id="logic-error">
                                 Copyright 2022
                                 <div class="analysis-tooltip">
-                                    <span class="tooltip-tag">LOGIC ERROR</span>
-                                    Outdated Copyright Date (Current year is 2025)
+                                    <span class="tooltip-tag">LOGIKFEHLER</span>
+                                    Veraltetes Copyright-Datum (Aktuelles Jahr ist 2025)
                                 </div>
                             </span>
                         </p>
                     </div>
                 </div>
             </div>
-
-            <!-- GAME LOOP B: Context Logic (Preview - not relevant for this demo) -->
-            <!-- 
-            <div class="tool-category">Evidence Item B: Verification Photo</div>
-            <div class="investigation-card" style="padding:20px;">
-                <div class="context-grid">
-                    <div class="image-container">
-                        !-- Placeholder for where the Deepfake image would go --
-                        <div class="placeholder-img">
-                            [IMAGE: CEO AT 1990 EVENT]
-                        </div>
-                        
-                        !-- Visualizing the Logic Connection Mechanic --
-                        <div class="logic-overlay">
-                            <div class="metadata-tag meta-1">Event Date: 1990</div>
-                            <div class="metadata-tag meta-2">Subject Age: 10y/o</div>
-                            
-                            !-- The line drawn by the user --
-                            <div class="logic-connector">
-                                <div class="connector-badge">IMPOSSIBLE</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="padding-left:10px;">
-                        <h4 style="color:var(--text-main); margin-bottom:10px;">Logic Analyzer</h4>
-                        <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
-                            The subject in the photo appears to be approx. 40 years old. 
-                            <br><br>
-                            However, cross-referencing the <strong>Event Date</strong> (1990) with the Subject's <strong>Date of Birth</strong> (1980) reveals a chronological impossibility.
-                        </p>
-                        <div style="margin-top:20px; font-size:0.75rem; color:var(--accent-danger); font-weight:bold;">
-                            ⚠️ CONTEXT MISMATCH DETECTED
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            -->
-
         </main>
 
         <!-- Right: Evidence & Verdict -->
         <aside class="panel panel-details">
-            <h3 style="margin-bottom:20px;">Investigation Report</h3>
+            <h3 style="margin-bottom:20px;">Untersuchungsbericht</h3>
 
             <div class="stat-card">
-                <!-- Added ID to update this text -->
-                <div class="stat-header" id="evidence-header">Collected Evidence (0/5)</div>
-                <ul class="evidence-list">
-                    <!-- Added data-target attributes to link with game view -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div class="stat-header" id="evidence-header" style="margin-bottom: 0;">Gesammelte Beweise (0/5)</div>
+                    
+                    <!-- Hints Toggle -->
+                    <div class="hints-toggle-wrapper">
+                        <span class="hints-label">Hinweise</span>
+                        <label class="switch">
+                            <input type="checkbox" id="hints-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Hints Disabled by default -->
+                <ul class="evidence-list hints-disabled" id="evidence-list">
                     <li class="evidence-item" data-target="spoofed-domain">
                         <span class="evidence-check">✓</span>
-                        <span>Spoofed Domain</span>
+                        <span class="evidence-text">Gefälschte Domain</span>
                     </li>
                     <li class="evidence-item" data-target="ai-syntax">
                         <span class="evidence-check">✓</span>
-                        <span>Unnatural Syntax</span>
+                        <span class="evidence-text">Unnatürliche Syntax</span>
                     </li>
                     <li class="evidence-item" data-target="malicious-link">
                          <span class="evidence-check">✓</span>
-                        <span>Malicious Link</span>
+                        <span class="evidence-text">Schädlicher Link</span>
                     </li>
                     <li class="evidence-item" data-target="logic-error">
                         <span class="evidence-check">✓</span>
-                        <span>Outdated Copyright</span>
+                        <span class="evidence-text">Veraltetes Copyright</span>
                     </li>
-                    <!-- New Evidence Item -->
-                    <li class="evidence-item" data-target="formatting-error">
+                    <li class="evidence-item" data-target="urgency">
                         <span class="evidence-check">✓</span>
-                        <span>Bad Formatting</span>
+                        <span class="evidence-text">Dringlichkeit</span>
                     </li>
                 </ul>
             </div>
 
             <div class="stat-card">
-                <div class="stat-header">Context Analysis</div>
+                <div class="stat-header">Kontext-Analyse</div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-                    <span style="font-size:0.9rem;">Artificiality Score</span>
-                    <!-- TODO #3: Dynamic Score ID -->
-                    <span id="artificiality-text" style="font-weight:bold; color:var(--accent-danger);">0%</span>
+                    <span style="font-size:0.9rem;">KI-Wahrscheinlichkeit</span>
+                    <span id="artificiality-text" style="font-weight:bold; color:var(--accent-success);">0%</span>
                 </div>
                 <div style="height:6px; background:#334155; border-radius:3px; margin-top:8px; overflow:hidden;">
-                    <!-- TODO #3: Dynamic Bar ID -->
-                    <div id="artificiality-bar" style="width:0%; height:100%; background:var(--accent-danger);"></div>
+                    <div id="artificiality-bar" style="width:0%; height:100%; background:var(--accent-success);"></div>
                 </div>
             </div>
 
             <div class="verdict-section">
-                <div class="stat-header">Final Verdict</div>
+                <div class="stat-header">Endgültiges Urteil</div>
                 <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
-                    Select the appropriate classification to close Case #4092.
+                    Wählen Sie die entsprechende Klassifizierung, um Fall #4092 abzuschließen.
                 </p>
                 <div class="btn-group">
-                    <!-- Added IDs for JS -->
-                    <button class="btn btn-safe" id="btn-safe">LEGITIMATE</button>
-                    <!-- Removed 'selected' class initially -->
-                    <button class="btn btn-scam" id="btn-scam">MALICIOUS</button>
+                    <button class="btn btn-safe" id="btn-safe">LEGITIM</button>
+                    <button class="btn btn-scam" id="btn-scam">SCHÄDLICH</button>
                 </div>
                 <button class="btn" id="submit-btn" style="width:100%; margin-top:15px; background:var(--accent-primary); color:white; box-shadow:0 4px 10px rgba(59, 130, 246, 0.3);">
-                    SUBMIT TO HQ
+                    AN ZENTRALE SENDEN
                 </button>
             </div>
             
             <div style="margin-top:40px; padding-top:20px; border-top:1px solid var(--panel-border);">
-                <div class="stat-header">Department Leaderboard</div>
+                <div class="stat-header">Abteilungs-Bestenliste</div>
                 <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:10px;">
-                    <span>1. Engineering</span>
-                    <span style="color:var(--accent-success);">98% Safe</span>
+                    <span>1. Technik</span>
+                    <span style="color:var(--accent-success);">98% Sicher</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:8px; opacity:0.7;">
-                    <span>2. Sales (You)</span>
-                    <span style="color:var(--accent-warning);">84% Safe</span>
+                    <span>2. Vertrieb (Du)</span>
+                    <span style="color:var(--accent-warning);">84% Sicher</span>
                 </div>
                  <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:8px; opacity:0.5;">
                     <span>3. HR</span>
-                    <span>79% Safe</span>
+                    <span>79% Sicher</span>
                 </div>
             </div>
 
@@ -282,27 +246,27 @@
     </div>
 
     <!-- RADIAL CONTEXT WHEEL MENU -->
-    <!-- TODO #2: 8 Options -->
     <div id="context-wheel" class="context-wheel">
-        <button class="wheel-btn" data-reason="spoofed-domain">Spoofed Domain</button>
-        <button class="wheel-btn" data-reason="formatting-error">Formatting</button>
-        <button class="wheel-btn" data-reason="ai-syntax">AI Syntax</button>
-        <button class="wheel-btn" data-reason="urgency">Urgency</button>
-        <button class="wheel-btn" data-reason="malicious-link">Malicious Link</button>
-        <button class="wheel-btn" data-reason="generic-greeting">Generic Greeting</button>
-        <button class="wheel-btn" data-reason="logic-error">Logic Error</button>
-        <button class="wheel-btn" data-reason="data-request">Data Request</button>
+        <!-- Shortened Labels -->
+        <button class="wheel-btn" data-reason="spoofed-domain">Fake-Domain</button>
+        <button class="wheel-btn" data-reason="formatting-error">Formatierung</button>
+        <button class="wheel-btn" data-reason="ai-syntax">KI Syntax</button>
+        <button class="wheel-btn" data-reason="urgency">Dringlichkeit</button>
+        <button class="wheel-btn" data-reason="malicious-link">Schad-Link</button>
+        <button class="wheel-btn" data-reason="generic-greeting">Allg. Anrede</button>
+        <button class="wheel-btn" data-reason="logic-error">Logikfehler</button>
+        <button class="wheel-btn" data-reason="data-request">Datenabfrage</button>
         <div class="wheel-center">✖</div>
     </div>
 
-    <!-- RESULT MODAL (Hidden by default) -->
+    <!-- RESULT MODAL -->
     <div class="modal-overlay" id="result-modal">
         <div class="modal-content">
-            <div class="modal-title" id="modal-title">Case Solved!</div>
+            <div class="modal-title" id="modal-title">Fall gelöst!</div>
             <div class="modal-body" id="modal-body">
-                Excellent work, Agent. You correctly identified the phishing attempt and flagged the spoofed domain.
+                Hervorragende Arbeit, Agent. Sie haben den Phishing-Versuch korrekt identifiziert.
             </div>
-            <button class="modal-btn" onclick="location.reload()">Next Case</button>
+            <button class="modal-btn" onclick="location.reload()">Nächster Fall</button>
         </div>
     </div>
 </body>

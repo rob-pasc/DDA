@@ -244,8 +244,8 @@ header {
 
 .email-mockup {
     padding: 30px;
-    font-family: 'Arial', sans-serif; /* Emails usually serif/sans-serif mix */
-    background: #e2e8f0; /* Light bg for email realism */
+    font-family: 'Arial', sans-serif;
+    background: #e2e8f0;
     color: #1e293b;
     min-height: 250px;
 }
@@ -272,13 +272,13 @@ header {
 .suspicious-zone {
     position: relative;
     border-bottom: 2px dashed transparent;
-    cursor: cell; /* Changed to indicate interactivity */
+    cursor: cell;
     transition: all 0.2s;
     padding: 0 2px;
 }
 
 .suspicious-zone:hover {
-    background-color: rgba(245, 158, 11, 0.1); /* Very subtle hint on hover */
+    background-color: rgba(245, 158, 11, 0.1);
     border-bottom-color: rgba(245, 158, 11, 0.5);
 }
 
@@ -301,6 +301,16 @@ header {
     animation: popIn 0.2s ease-out forwards;
 }
 
+/* FADE OUT ANIMATION for Auto-Hide */
+.suspicious-zone.found .analysis-tooltip.fade-out {
+    animation: tooltipFadeOut 1s ease forwards;
+}
+
+@keyframes tooltipFadeOut {
+    from { opacity: 1; pointer-events: auto; }
+    to { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+
 /* The Tooltip showing the analysis */
 .analysis-tooltip {
     position: absolute;
@@ -315,11 +325,9 @@ header {
     white-space: nowrap;
     box-shadow: var(--shadow-card);
     border: 1px solid var(--accent-warning);
-    display: none; /* Hidden by default */
+    display: none;
     z-index: 10;
     margin-bottom: 5px;
-    
-    /* TODO #1: Transparency on hover */
     transition: opacity 0.2s ease;
 }
 
@@ -336,80 +344,6 @@ header {
     text-transform: uppercase;
 }
 
-/* MODULE 2: CONTEXT DETECTIVE */
-.context-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.image-container {
-    position: relative;
-    height: 200px;
-    background-color: #000;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    border: 2px solid var(--panel-border);
-}
-
-.placeholder-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-    /* Placeholder pattern */
-    background-image: linear-gradient(45deg, #1e293b 25%, #0f172a 25%, #0f172a 50%, #1e293b 50%, #1e293b 75%, #0f172a 75%, #0f172a 100%);
-    background-size: 20px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #475569;
-    font-weight: bold;
-}
-
-/* Gameplay: Logic Connector Line */
-.logic-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-}
-
-.metadata-tag {
-    position: absolute;
-    background: rgba(15, 23, 42, 0.9);
-    color: var(--text-main);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    border: 1px solid var(--accent-primary);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-.meta-1 { top: 20px; left: 20px; } /* Event Date */
-.meta-2 { bottom: 20px; right: 20px; border-color: var(--accent-danger); } /* Person Age */
-
-.logic-connector {
-    position: absolute;
-    top: 40px;
-    left: 80px;
-    width: 150px;
-    height: 2px;
-    background: var(--accent-danger);
-    transform: rotate(25deg);
-    transform-origin: left center;
-}
-
-.connector-badge {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--accent-danger);
-    color: white;
-    font-size: 0.7rem;
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-weight: bold;
-}
 
 /* --- RIGHT PANEL: VERDICT & STATS --- */
 .stat-card {
@@ -426,8 +360,10 @@ header {
     text-transform: uppercase;
 }
 
+/* EVIDENCE LIST & HINT TOGGLE */
 .evidence-list {
     list-style: none;
+    transition: all 0.3s ease;
 }
 
 .evidence-item {
@@ -437,14 +373,14 @@ header {
     padding: 8px 0;
     border-bottom: 1px solid var(--panel-border);
     font-size: 0.9rem;
-    color: var(--text-muted); /* Default muted */
+    color: var(--text-muted);
     transition: all 0.3s ease;
 }
 
 .evidence-item:last-child { border-bottom: none; }
 
 .evidence-check {
-    color: #475569; /* Default gray/unchecked */
+    color: #475569;
     width: 16px;
     height: 16px;
     display: flex;
@@ -455,6 +391,7 @@ header {
     border: 1px solid #475569;
     font-size: 0.7rem;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 /* Active State for Evidence Sidebar */
@@ -468,6 +405,72 @@ header {
     color: white;
 }
 
+/* HINT LOGIC: Blur text if hints disabled and not found */
+.evidence-list.hints-disabled .evidence-item:not(.checked) .evidence-text {
+    filter: blur(5px);
+    opacity: 0.4;
+    user-select: none;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* Toggle Switch Styles */
+.hints-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hints-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 18px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #334155;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Verdict Buttons */
 .verdict-section {
     margin-top: 30px;
 }
@@ -497,7 +500,6 @@ header {
     opacity: 0.6;
 }
 
-/* TODO #4: Legitimate Selected State */
 .btn-safe.selected {
     background: var(--accent-success);
     color: white;
@@ -506,8 +508,9 @@ header {
     position: relative;
 }
 
+/* Translated 'SELECTED' to 'AUSGEWÄHLT' */
 .btn-safe.selected::after {
-    content: 'SELECTED';
+    content: 'AUSGEWÄHLT';
     position: absolute;
     top: -10px;
     right: -10px;
@@ -525,7 +528,6 @@ header {
     opacity: 0.6;
 }
 
-/* Fake "Selected" State */
 .btn-scam.selected {
     background: var(--accent-danger);
     color: white;
@@ -533,8 +535,10 @@ header {
     box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
     position: relative;
 }
+
+/* Translated 'SELECTED' to 'AUSGEWÄHLT' */
 .btn-scam.selected::after {
-    content: 'SELECTED';
+    content: 'AUSGEWÄHLT';
     position: absolute;
     top: -10px;
     right: -10px;
@@ -608,7 +612,7 @@ header {
 /* --- CONTEXT WHEEL (RADIAL MENU) --- */
 .context-wheel {
     position: fixed;
-    width: 240px; /* Increased slightly for more items */
+    width: 240px;
     height: 240px;
     transform: translate(-50%, -50%) scale(0);
     z-index: 999;
@@ -652,7 +656,7 @@ header {
 /* Radial Buttons */
 .wheel-btn {
     position: absolute;
-    width: 90px; /* slightly smaller width to fit 8 items */
+    width: 90px;
     padding: 6px 8px;
     background: var(--panel-bg);
     border: 1px solid var(--panel-border);
@@ -680,7 +684,7 @@ header {
     z-index: 10;
 }
 
-/* TODO #2: 8-Item Positioning (Radius approx 95px) */
+/* 8-Item Positioning (Radius approx 95px) */
 /* 0 deg (Top) */
 .wheel-btn:nth-child(1) { transform: translate(0, -85px); } 
 /* 45 deg (Top Right) */
@@ -726,4 +730,15 @@ header {
 .wheel-btn.wrong {
     background: var(--accent-danger);
     border-color: var(--accent-danger);
+}
+
+@media (width < 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 0 1fr 320px;
+    }
+}
+
+.suspicious-zone a {
+    text-decoration: none;
+    color: white;
 }

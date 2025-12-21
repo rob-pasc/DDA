@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Elements
     const evidenceHeader = document.getElementById('evidence-header');
+    const evidenceList = document.getElementById('evidence-list');
+    const hintsToggle = document.getElementById('hints-toggle');
     const safeBtn = document.getElementById('btn-safe');
     const scamBtn = document.getElementById('btn-scam');
     const submitBtn = document.getElementById('submit-btn');
@@ -79,6 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Mark Zone Found
         currentActiveZone.classList.add('found');
         
+        // 1b. Auto-hide Tooltip after 5 seconds (Fade Out)
+        const tooltip = currentActiveZone.querySelector('.analysis-tooltip');
+        if(tooltip) {
+            setTimeout(() => {
+                tooltip.classList.add('fade-out');
+            }, 5000);
+        }
+
         // 2. Update Sidebar
         const dataId = currentActiveZone.getAttribute('data-id');
         const sidebarItem = document.querySelector(`.evidence-item[data-target="${dataId}"]`);
@@ -88,15 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 3. Update Stats
         cluesFound++;
-        evidenceHeader.innerText = `Collected Evidence (${cluesFound}/${totalClues})`;
+        evidenceHeader.innerText = `Gesammelte Beweise (${cluesFound}/${totalClues})`;
         
-        // TODO #3: Update Artificiality Score
+        // Update Artificiality Score
         updateArtificialityScore();
 
         // 4. Close Wheel
         closeWheel();
-
-        // 5. Optional SFX could go here
     }
 
     function handleWrongChoice(btnElement) {
@@ -143,8 +151,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 3. HINTS TOGGLE LOGIC
+    hintsToggle.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            // Enable hints: remove class that blurs text
+            evidenceList.classList.remove('hints-disabled');
+        } else {
+            // Disable hints: add class that blurs text
+            evidenceList.classList.add('hints-disabled');
+        }
+    });
 
-    // 3. VERDICT SELECTION (Existing Logic)
+    // 4. VERDICT SELECTION
     safeBtn.addEventListener('click', () => {
         selectedVerdict = 'safe';
         safeBtn.classList.add('selected');
@@ -157,28 +175,39 @@ document.addEventListener('DOMContentLoaded', () => {
         safeBtn.classList.remove('selected');
     });
 
-    // 4. SUBMIT LOGIC (Existing Logic)
+    // 5. SUBMIT LOGIC WITH DYNAMIC XP
     submitBtn.addEventListener('click', () => {
         if(!selectedVerdict) {
-            alert("Please select a verdict (Legitimate or Malicious) before submitting.");
+            alert("Bitte wählen Sie ein Urteil (Legitim oder Schädlich), bevor Sie senden.");
             return;
         }
 
         modal.classList.add('active');
 
         if(selectedVerdict === 'scam') {
-            modalTitle.innerText = "CASE SOLVED";
+            modalTitle.innerText = "FALL GELÖST";
             modalTitle.style.color = "var(--accent-success)";
             
+            // Dynamic XP Logic
+            const BASE_XP = 150;
+            const XP_PER_CLUE = 40;
+            const totalXP = BASE_XP + (cluesFound * XP_PER_CLUE);
+
             if(cluesFound === totalClues) {
-                modalBody.innerText = `Perfect Score! You found all ${totalClues} clues and correctly identified the threat. +500 XP`;
+                modalBody.innerHTML = `Perfekte Punktzahl! Sie haben alle <strong>${totalClues}</strong> Hinweise gefunden.<br><br>
+                Basis-Belohnung: +${BASE_XP}<br>
+                Hinweis-Bonus: +${cluesFound * XP_PER_CLUE}<br>
+                <strong>Gesamt verdient: +${totalXP} XP</strong>`;
             } else {
-                modalBody.innerText = `Good work! You identified the threat, but missed ${totalClues - cluesFound} clues. Keep your eyes open. +350 XP`;
+                modalBody.innerHTML = `Gute Arbeit! Sie haben die Bedrohung erkannt, aber <strong>${totalClues - cluesFound}</strong> Hinweise übersehen.<br><br>
+                Basis-Belohnung: +${BASE_XP}<br>
+                Hinweis-Bonus: +${cluesFound * XP_PER_CLUE}<br>
+                <strong>Gesamt verdient: +${totalXP} XP</strong>`;
             }
         } else {
-            modalTitle.innerText = "BREACH DETECTED";
+            modalTitle.innerText = "SICHERHEITSVERLETZUNG";
             modalTitle.style.color = "var(--accent-danger)";
-            modalBody.innerText = "You marked a malicious email as safe. The ransomware has been deployed. Review the evidence and try again.";
+            modalBody.innerHTML = "Sie haben eine bösartige E-Mail als sicher eingestuft. Die Ransomware wurde ausgeführt.<br><br><strong>Verdiente XP: 0</strong>";
         }
     });
 });
